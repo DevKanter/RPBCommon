@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RPBCommon
+﻿namespace SMG1Common
 {
     public enum RCClientConnect
     {
@@ -8,5 +6,7 @@ namespace RPBCommon
 
         ERROR_PARSE_IP_ADDRESS,
         ERROR_PARSE_PORT,
+
+        BEGIN_CONNECTING
     }
 }
