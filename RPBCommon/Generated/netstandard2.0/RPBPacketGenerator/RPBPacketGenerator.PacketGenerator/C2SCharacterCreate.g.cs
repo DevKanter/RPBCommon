@@ -4,22 +4,21 @@ using System.Runtime.CompilerServices;
 using RPBUtilities;
 using RPBPacketBase;
 
-namespace RPBCommon.Packet.Packets.Character
+namespace SMG1Common.Packets.Character
 {
 
-public partial class C2SCharacterCreate : RPBPacket
+public partial class C2SCharacterCreate
 {
-    private static readonly int _id = BitConverter.ToInt32(new byte[]{1,0,0,0},0);
+    private static readonly int _id = BitConverter.ToInt32(new byte[]{(byte)PCategory.CHARACTER,4,0,0},0);
     public override int PacketId => _id;
     public override int GetSize()
     {
-        return sizeof(Int32) + CharName.Length + 4;
+        return sizeof(Int32) + ;
     }
 
     public override void Serialize(ByteBuffer buffer)
     {
 	    buffer.Write(CharID);
-	    buffer.Write(CharName);
 
     }
     public override T Deserialize<T>(ByteBuffer buffer)
@@ -27,7 +26,7 @@ public partial class C2SCharacterCreate : RPBPacket
         return Unsafe.As<T>(new C2SCharacterCreate()
         {
 	    CharID = buffer.Read<Int32>(),
-	    CharName = buffer.ReadString()
+
 
         });
     }

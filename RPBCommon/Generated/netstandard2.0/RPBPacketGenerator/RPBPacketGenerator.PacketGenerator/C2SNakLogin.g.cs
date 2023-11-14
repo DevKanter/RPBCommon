@@ -4,28 +4,26 @@ using System.Runtime.CompilerServices;
 using RPBUtilities;
 using RPBPacketBase;
 
-namespace SMG1Common.Packet.Packets.Connection
+namespace SMG1Common.Packets.Connection
 {
 
-public partial class C2SHello : RPBPacket
+public partial class C2SNakLogin
 {
-    private static readonly int _id = BitConverter.ToInt32(new byte[]{0,1,0,0},0);
+    private static readonly int _id = BitConverter.ToInt32(new byte[]{(byte)PCategory.CONNECTION,4,0,0},0);
     public override int PacketId => _id;
     public override int GetSize()
     {
-        return ServerMessage.Length + 4;
+        return 
     }
 
     public override void Serialize(ByteBuffer buffer)
     {
-	    buffer.Write(ServerMessage);
 
     }
     public override T Deserialize<T>(ByteBuffer buffer)
     {
-        return Unsafe.As<T>(new C2SHello()
+        return Unsafe.As<T>(new C2SNakLogin()
         {
-	    ServerMessage = buffer.ReadString()
 
         });
     }

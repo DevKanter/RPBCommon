@@ -2,29 +2,29 @@
 using System;
 using System.Runtime.CompilerServices;
 using RPBUtilities;
+using RPBPacketBase;
 
-namespace RPBCommon.Packet.Packets.Crypt
+namespace SMG1Common.Packets.Connection
 {
 
-public partial class C2SKeyShareAnswer : RPBPacket
+public partial class S2CAckGameVersionCheck
 {
-    private static readonly int _id = BitConverter.ToInt32(new byte[]{2,1,0,0},0);
+    private static readonly int _id = BitConverter.ToInt32(new byte[]{(byte)PCategory.CONNECTION,4,0,0},0);
     public override int PacketId => _id;
     public override int GetSize()
     {
-        return sizeof(Boolean);
+        return ;
     }
 
     public override void Serialize(ByteBuffer buffer)
     {
-	    buffer.Write(Success);
 
     }
     public override T Deserialize<T>(ByteBuffer buffer)
     {
-        return Unsafe.As<T>(new C2SKeyShareAnswer()
+        return Unsafe.As<T>(new S2CAckGameVersionCheck()
         {
-	    Success = buffer.Read<Boolean>()
+
 
         });
     }
